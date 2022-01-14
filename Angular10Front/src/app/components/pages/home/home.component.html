@@ -1,0 +1,102 @@
+<div class="container">
+    <span class="material-icons "(click)="open(formulario)" style="cursor: pointer">lightbulb</span>
+</div>
+<!-- grid 3 parts -->
+<div class="row" *ngFor="let data of list" infinite-scroll (scrolled)="onScrollDown()" [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="icons">
+            <span class="material-icons" (click)=" deleteData(data.id)" style="cursor: pointer">clear</span>
+            <span class="material-icons" (click)="open(formulario)" (click)="updateData(data)" style="cursor: pointer">list</span>
+        </div>
+        <div class="image">
+            <img [src]="data.image" [alt]="data.asignee" class="card-img-top">
+        </div>
+        <div class="card-inner">
+            <div class="row no-border">
+                <div class="items">
+                    <span><b>Asignee</b></span>
+                    <span class="span data">{{data.asignee}}</span>
+                </div>
+                <div class="items">
+                    <span><b>Workflow</b></span>
+                    <span class="span data">{{data.workflow}}</span>
+                </div>
+                <div class="items">
+                    <span><b>Review Score</b></span>
+                    <span class="span data">{{data.score}}</span>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="item ">
+            <span><b>Summary</b> </span>
+            <span>{{data.summary}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="items right">
+                <span>Posted <span class=" blue"> {{data.user}}</span></span>
+                <span><span class="material-icons">calendar_today</span> {{data.created_at | date:'medium'}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 mt-5 container-notFound" *ngIf="list.length <= 0">
+        <p>----No results</p>
+    </div>
+</div>
+<button class="btn btn-info up" [ngClass]="'no-hidden'" *ngIf="showGoUpButton" (click)="onScrollTop()">Up</button>
+
+<!-- modal -->
+
+        
+<ng-template #formulario let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{titulo}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">       
+        <form class="form" [formGroup]="Form" (ngSubmit)="createData()" id="Form">
+            <div class="form-group col-md-6">
+                <label>Score </label>
+                <input type="number" formControlName="score" value="5.0">
+                <div class="warning" *ngIf="Form.get('score')?.invalid &&  Form.get('score')?.touched">Score can´t be empty</div>
+            </div>
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" formControlName="asignee"  aria-describedby="emailHelp" placeholder="Enter asignee">
+                    <div class="warning" *ngIf="Form.get('asignee')?.invalid && Form.get('asignee')?.touched">You must write asignee</div>
+                </div>
+
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" formControlName="workflow"   placeholder="Workflow">
+                <div class="warning" *ngIf="Form.get('workflow')?.invalid && Form.get('workflow')?.touched">You must write workflow</div>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" formControlName="summary"   placeholder="Summary">
+            </div>
+
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" formControlName="user"   placeholder="User">
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" formControlName="image"   placeholder="Image">
+            </div>
+
+
+
+            <button [disabled]="this.Form.invalid" type="submit" (click)="modal.close('Save click')" class="btn btn-success btn-lg">Aceptar</button>
+            <!--  -->
+        </form>
+    </div>
+   
+
+</ng-template>
