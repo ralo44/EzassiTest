@@ -1,9 +1,9 @@
 .image{
       width: 100%;
-      height: 100%;
-      border-radius: 8px;
-      box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
-      padding: 10% 0;
+      height: 90%;
+      border-radius: 5px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 20% 0;
   }
 
 .items {
@@ -16,8 +16,8 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    padding: 2em;
-  }
+    padding: 20% 0;
+}
 
 .items .right {
     display: flex;
@@ -34,7 +34,7 @@
       }
   
 input[type="number"]{
-    width:50px
+    width:170px;
 }
 input[type="text"]{
     width: auto;
@@ -48,7 +48,7 @@ input[type="text"]{
     color: blue;
 }
 .blue{
-    color: rgb(13, 13, 175);
+    color: rgb(33, 33, 153);
 }
 .btn.up{
     position: fixed;
@@ -61,16 +61,27 @@ input[type="text"]{
     margin: 20px;
     border-radius: 10px;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
-
-        
 }
 .row.no-border{
     border-width : 0;
-    box-shadow: 0;
-
-    // padding: 10px 30px 20px;
+    box-shadow: none;
+    margin:1px;
+    border-radius: 1px;
 
 }
 .card{
     border-width : 0
+}
+.light{
+    position:fixed;
+    top: 10px;
+    right: 8px;
+    color: rgb(33, 33, 153);
+}
+.material-icons{
+    color: rgb(33, 33, 153);
+}
+.form{
+    justify-content: center;
+    align-items: center;
 }

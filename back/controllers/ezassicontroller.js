@@ -17,24 +17,24 @@ exports.create = function (req, res) {
 }
 //GET
 //api/
-exports.get = function (req, res) {
-    Ezassi.get(function (err, ezassi) {
+exports.get = async function (req, res) {
+    await Ezassi.get(function (err, ezassi) {
         console.log('controller');
         if (err) {
             res.send(err)
         }
-        res.send(ezassi)
     })
 }
 //UPDATE
 //api/:id
-exports.update = function (req, res) {
+exports.update = async function (req, res) {
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-        res.status(400).send({ error: true, message: 'Please provide all required field' });
+       await res.status(400).send({ error: true, message: 'Please provide all required field' });
     } else {
-        Ezassi.update(req.params.id, new Ezassi(req.body), function (err, ezassi) {
-            if (err)
+       await Ezassi.update(req.params.id, new Ezassi(req.body), function (err, ezassi) {
+            if (err){
                 res.send(err);
+            }
             res.json({ error: false, message: 'Employee successfully updated' });
         });
     }

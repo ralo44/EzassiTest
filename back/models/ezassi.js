@@ -12,7 +12,7 @@ var Ezassi = function (ezassi) {
 }
 
 //Sql calls
-Ezassi.get = function (result) {
+Ezassi.get =  function (result) {
     try {
         connect.query("Select * from ezassi ", function (err, res) {
             result(res)
@@ -22,12 +22,12 @@ Ezassi.get = function (result) {
         result(err)
         console.log('Error', err);
     }
+        
 }
 
 Ezassi.create = function (newEmp, result) {
     try {
         connect.query("INSERT INTO ezassi set ?", newEmp, function (err, res) {
-            console.log(res.insertId)
             result(null, res.insertId)
         })
     } catch (error) {

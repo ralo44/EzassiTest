@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   Form: FormGroup
   list: any[] = []
   id: number;
-  titulo: string = 'Agregar'
+  title: string = 'Add'
 
   //Infinity scroll
   showGoUpButton = false
@@ -121,12 +121,11 @@ export class HomeComponent implements OnInit {
       })
     } else {
       ezassi._id = this.id;
-      console.log(ezassi._id);
+      this.title = 'Edit'
       this.ezassiService.update(this.id, ezassi).subscribe(data => {
         console.log(data);
         this.Form.reset();
         this.readData()
-        this.titulo = 'Editar'
       }, error =>{
         console.log(error);
       })

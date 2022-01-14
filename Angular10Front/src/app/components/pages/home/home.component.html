@@ -1,4 +1,4 @@
-<div class="container">
+<div class="light">
     <span class="material-icons "(click)="open(formulario)" style="cursor: pointer">lightbulb</span>
 </div>
 <!-- grid 3 parts -->
@@ -12,7 +12,7 @@
         <div class="image">
             <img [src]="data.image" [alt]="data.asignee" class="card-img-top">
         </div>
-        <div class="card-inner">
+        <div class="card">
             <div class="row no-border">
                 <div class="items">
                     <span><b>Asignee</b></span>
@@ -57,23 +57,22 @@
         
 <ng-template #formulario let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">{{titulo}}</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">       
         <form class="form" [formGroup]="Form" (ngSubmit)="createData()" id="Form">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
                 <label>Score </label>
-                <input type="number" formControlName="score" value="5.0">
+                <input type="number" formControlName="score" >&nbsp;
                 <div class="warning" *ngIf="Form.get('score')?.invalid &&  Form.get('score')?.touched">Score can´t be empty</div>
             </div>
-                <div class="form-group col-md-12">
-                    <input type="text" class="form-control" formControlName="asignee"  aria-describedby="emailHelp" placeholder="Enter asignee">
-                    <div class="warning" *ngIf="Form.get('asignee')?.invalid && Form.get('asignee')?.touched">You must write asignee</div>
-                </div>
-
+            <div class="form-group col-md-12">
+                <input autofocus type="text" class="form-control" formControlName="asignee"  aria-describedby="emailHelp" placeholder="Enter asignee">
+                <div class="warning" *ngIf="Form.get('asignee')?.invalid && Form.get('asignee')?.touched">You must write asignee</div>
+            </div>
             <div class="form-group col-md-12">
                 <input type="text" class="form-control" formControlName="workflow"   placeholder="Workflow">
                 <div class="warning" *ngIf="Form.get('workflow')?.invalid && Form.get('workflow')?.touched">You must write workflow</div>
@@ -91,10 +90,7 @@
                 <input type="text" class="form-control" formControlName="image"   placeholder="Image">
             </div>
 
-
-
             <button [disabled]="this.Form.invalid" type="submit" (click)="modal.close('Save click')" class="btn btn-success btn-lg">Aceptar</button>
-            <!--  -->
         </form>
     </div>
    
